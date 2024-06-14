@@ -23,4 +23,4 @@ Route::post('/login', [LoginController::class,'store']);
 // Routes of LogoutController
 Route::post('/logout', [LogoutController::class,'store'])->name('logout');
 
-Route::get('/{user}', [PostController::class, 'index'])->middleware(['auth'])->name('posts.index');
+Route::get('/{user:username}', [PostController::class, 'index'])->middleware(['auth'])->name('posts.index');

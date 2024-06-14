@@ -9,8 +9,10 @@ class PostController extends Controller
 {
     public function index( User $user )
     {
-        dd( $user );
-        return view('dashboard');
+        return view('dashboard', 
+        [
+            'user' => $user
+        ]);
     }   // Here End Function Index
 
 }   // Here End Class PostController

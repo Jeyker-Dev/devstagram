@@ -13,8 +13,6 @@ class LoginController extends Controller
 
     public function store( Request $request)
     {
-        dd( $request->remember );
-
         $request->validate
         ([
             'email' =>'required|email',

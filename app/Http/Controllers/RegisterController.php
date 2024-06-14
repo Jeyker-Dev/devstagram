@@ -29,7 +29,7 @@ class RegisterController extends Controller
             'name' =>'required',
             'username' =>'required|unique:users|min:3|max:30',
             'email' =>'required|unique:users|email|max:60',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:6|confirmed'
         ]);
 
         // Store Data To Database
@@ -42,7 +42,17 @@ class RegisterController extends Controller
             'password_confirmation' => $request->password_confirmation,
         ]);
 
+        //  Authenticate the User
+        // auth()->attempt
+        // ([
+        //     'email'=> $request->email,
+        //     'password' => $request->password
+        // ]);
+
+        // Other Form of Authentication
+        auth()->attempt( $request->only('email', 'password') );
+
         // Redirect
-        return redirect()->route('/posts.index');
+        return redirect()->route('posts.index');
     }   // Here End Function Store
 }

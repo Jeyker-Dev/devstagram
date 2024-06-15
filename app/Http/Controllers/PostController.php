@@ -15,4 +15,9 @@ class PostController extends Controller
         ]);
     }   // Here End Function Index
 
+    public function create()
+    {
+        return view('posts.create');
+    }   // Here End Function Create
+
 }   // Here End Class PostController

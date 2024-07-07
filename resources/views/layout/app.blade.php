@@ -6,9 +6,10 @@
 
         <title>Devstagram - @yield('titulo')</title>
 
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
         @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
+        @stack('styles')
+        @stack('scripts')
     </head>
 <!--    Here End Head -->
     <body class="bg-gray-100">
@@ -26,8 +27,11 @@
 
                     </a>
 
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">Hola: 
-                        <span class="font-normal">{{ auth()->user()->username }}</span></a>
+                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('posts.index', auth()->user()->username) }}">Hola: 
+                        <span class="font-normal">
+                            {{ auth()->user()->username }}
+                        </span>
+                    </a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                     <button type="submit" class="font-bold uppercase text-gray-600 text-sm" href="{{ route('logout') }}">Cerrar Sesion</button>

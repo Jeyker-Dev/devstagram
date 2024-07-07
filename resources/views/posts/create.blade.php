@@ -4,17 +4,28 @@
     Crea Una Nueva Publicacion
 @endsection
 
+@push('styles')
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
+
+
+
 
 @section('contenido')
     <div class="md:flex md:items-center">
 
         <div class="md:w-1/2 px-10">
-            Imagen Aqui
+            <form action="{{ route('imagenes.store') }}" id="myDropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex flex-col justify-center items-center" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="fallback">
+                    <input name="file" type="file"/>
+                </div>
+            </form>
         </div>
 
         <div class="md:w-1/2 p-10 bg-white rounded-lg shadow-xl mt-10 md:mt-0">
 
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ route('posts.store') }}" method="POST">
 
                 @csrf
 
@@ -35,6 +46,14 @@
                     {{ old('descripcion') }}
                     </textarea>
                     @error('descripcion')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center 
+                    uppercase"> {{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-5">
+                    <input type="hidden" name="imagen">
+                    @error('imagen')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center 
                     uppercase"> {{ $message }}</p>
                     @enderror

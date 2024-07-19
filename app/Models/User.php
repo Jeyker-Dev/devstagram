@@ -51,4 +51,25 @@ class User extends Authenticatable
         // Relationship between User and Post one to many(Uno a Muchos)
         return $this->hasMany(Post::class);
     }
-}
+
+    public function likes()
+    {
+        return $this->hasMany( Like::class );
+    }   // Here End Function Likes
+
+    public function followers()
+    {
+        return $this->belongsToMany( User::class, 'followers', 'user_id', 'follower_id' );
+    }   // Here End Function Followers
+
+    public function followings()
+    {
+        return $this->belongsToMany( User::class, 'followers', 'follower_id', 'user_id' );
+    }   // Here End Function Followers
+
+    // Check if the user is following another user
+    public function siguiendo( User $user)
+    {
+        return $this->followers->contains( $user->id );
+    }   // Here End Function Siguiendo
+}   // Here End Class User

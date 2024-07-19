@@ -8,6 +8,7 @@
 
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
+        @livewireStyles
         @stack('styles')
         @stack('scripts')
     </head>
@@ -15,7 +16,7 @@
     <body class="bg-gray-100">
         <header class="p-5 border-p bg-white shadow">
             <div class="container mx-auto flex justify-between">
-                <h1 class="text-3xl font-black">Devstagram</h1>
+                <a href="{{route('home')}}" class="text-3xl font-black">Devstagram</a>
 
                 @auth
                 <nav class="flex gap-2 items-center">
@@ -64,5 +65,7 @@
             {{ now()->year}}
         </footer>
 <!--    Here End Footer -->
+        @livewireScripts
+
     </body>
 </html>

@@ -6,39 +6,36 @@
 @endsection
 
 @section('contenido')
-    <div class="container mx-auto flex">
+    <div class="container mx-auto flex items-center">
 
         <div class="md:w-1/2">
             <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del Post {{$post->titulo}}">
-
-            <div class="p-3">
-                <p>0 Likes</p>
+            @auth
+            <div class="p-3  flex items-center gap-4">
+                <livewire:like-post :post="$post" />
+            @endauth
             </div>
 
-            <div>
-                <p class="font-bold"> {{$post->user->username }}</p>
-                <p class="text-sm text-gray-500">{{$post->created_at->diffForHumans()}}</p>
-                <p class="mt-5">{{$post->descripcion}}</p>
-            </div>
+            <p class="font-bold">{{ $post->user->username}}</p>
+            <p class="text-gray-500"> {{ $post->created_at->diffForHumans() }} </p>
+            <p class="text-justify mt-2 "> {{ $post->descripcion }} </p>
 
             @auth
-
-                @if($post->user_id === auth()->user()->id )
-                <form method="POST" action="{{ route('posts.destroy', $post) }}">
-                    @method('DELETE')
-                    @csrf
-                    <input type="submit" value="Eliminar Publicacion" class="bg-red-500 hover:bg-red-600 p-2 rounded text-white font-bold mt-4 cursor-pointer" />
-                </form>
+                @if (auth()->user()->id == $post->user_id)
+                    <div class="flex gap-2 mt-5">
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar" class="bg-red-500 hover:bg-red-700 transition-colors p-3 text-white rounded-lg">
+                        </form>
+                    </div>
+                    
                 @endif
-
             @endauth
-
         </div>
-
         <div class="md:w-1/2 p-5">
             @auth
-                
-            
+
             <div class="shadow bg-white p-5 mb-5">
                 <p class="text-xl font-bold text-center mb-4">Agrega un Nuevo Comentario</p>
 

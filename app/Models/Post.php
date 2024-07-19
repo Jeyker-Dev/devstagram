@@ -27,4 +27,14 @@ class Post extends Model
     {
         return $this->hasMany(Comentario::class);
     }   // Here End Function Comentarios
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }   // Here End Function Likes
+
+    public function checkLike( User $user )
+    {
+        return $this->likes->contains('user_id', $user->id );
+    }   // Here End Function checkLike
 }   // Here End Class Post

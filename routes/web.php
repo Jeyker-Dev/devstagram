@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Controllers\ComentarioController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Configuration\Middleware;
 
 // Route of HomeController
@@ -20,7 +20,7 @@ Route::get('/', HomeController::class)->middleware('auth')->name('home');
 
 // Routes of RegisterController
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/register/users', [RegisterController::class, 'store'])->name('register.store');
 
 // Routes of LoginController
 Route::get('/login', [LoginController::class,'index'])->name('login');

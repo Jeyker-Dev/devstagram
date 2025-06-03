@@ -1,5 +1,5 @@
 @props([''])
 
-<p class="text-xl md:text-2xl font-bold">
+<p class="text-lg md:text-2xl font-bold">
     Devstagram
 </p>

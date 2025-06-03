@@ -73,7 +73,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
     }
 }; ?>
 
-<div class="flex flex-col justify-center gap-6 bg-white shadow-lg min-w-xl p-6">
+<div class="flex flex-col justify-center gap-6 bg-white shadow-lg w-full p-6">
 
 
     <!-- Session Status -->

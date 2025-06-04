@@ -11,7 +11,7 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Volt::route('/my-profile', 'profile.my-profile')
+Volt::route('/profile/{user:name}', 'profile.my-profile')
     ->middleware(['auth', 'verified'])
     ->name('my-profile');
 

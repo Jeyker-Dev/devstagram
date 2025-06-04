@@ -31,7 +31,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         Auth::login($user);
 
-        $this->redirectIntended(route('my-profile', absolute: false), navigate: true);
+        $this->redirectIntended(route('my-profile', ['user' => Auth::user()->name], absolute: false), navigate: true);
     }
 }; ?>
 

@@ -15,6 +15,10 @@ Volt::route('/profile/{user:name}', 'profile.my-profile')
     ->middleware(['auth', 'verified'])
     ->name('my-profile');
 
+Route::view('{user}/create-post', 'profile/create-post')
+    ->middleware(['auth', 'verified'])
+    ->name('create-post');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 

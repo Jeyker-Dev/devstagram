@@ -1,5 +1,9 @@
+@php
+    $user = \Illuminate\Support\Facades\Auth::user();
+@endphp
+
 <div x-data="{ open: false }">
-    @if(!\Illuminate\Support\Facades\Auth::user())
+    @if(!$user)
         <nav class="hidden sm:flex sm:gap-4">
             <a href="{{ route('login') }}" class="font-bold">Iniciar Sesion</a>
             <a href="{{ route('register') }}" class="font-bold">Crear Cuenta</a>
@@ -21,8 +25,14 @@
             <a href="{{ route('register') }}" class="font-bold">Crear Cuenta</a>
         </nav>
     @else
-        <div class="flex flex-col sm:flex-row gap-4">
-            <p>Hola: {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
+            <flux:button icon="camera"
+                         href="{{ route('create-post', ['user' => $user->name]) }}">
+                Crear
+            </flux:button>
+
+            <p>Hola: {{ $user->name }}</p>
+
             <livewire:auth.logout/>
         </div>
     @endif

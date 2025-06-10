@@ -7,10 +7,6 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
-
 Volt::route('/profile/{user:name}', 'profile.my-profile')
     ->middleware(['auth', 'verified'])
     ->name('my-profile');

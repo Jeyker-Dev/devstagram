@@ -6,10 +6,19 @@ use Illuminate\Support\Facades\Auth;
 
 new #[Layout('components.layouts.auth')] class extends Component {
     public string $name = '';
+    public ?int $postsCount = null;
 
     public function mount(): void
     {
         $this->name = Auth::user()->name;
+        $this->postsCount = Auth::user()->posts()->count();
+    }
+
+    public function with(): array
+    {
+        return [
+            'posts' => Auth::user()->posts()->paginate(6),
+        ];
     }
 }; ?>
 
@@ -38,10 +47,24 @@ new #[Layout('components.layouts.auth')] class extends Component {
                </x-general.text>
 
                <x-general.text class="!text-base">
-                   <span class="font-bold">0</span>
+                   <span class="font-bold">{{ $postsCount }}</span>
                    Post
                </x-general.text>
            </div>
        </div>
+    </div>
+
+    <div>
+        <x-general.title>
+            Publicaciones
+        </x-general.title>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 lg:w-10/12 xl:w-9/12 mx-auto my-10">
+            @foreach($posts as $post)
+                <div class="h-72 md:h-96">
+                    <img src="{{ $post->post_image_url }}" alt="" class="w-full h-full object-cover">
+                </div>
+            @endforeach
+        </div>
     </div>
 </div>

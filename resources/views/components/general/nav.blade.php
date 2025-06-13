@@ -31,7 +31,7 @@
                 Crear
             </flux:button>
 
-            <p>Hola: {{ $user->name }}</p>
+            <a href="{{ route('my-profile', $user->name) }}">Hola: {{ $user->name }}</a>
 
             <livewire:auth.logout/>
         </div>

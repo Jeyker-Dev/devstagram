@@ -55,6 +55,10 @@
     @apply  !mb-0 !leading-tight;
 }
 
+[data-flux-input].input-username input {
+    @apply !border-t-0 !border-r-0 border-l-0 !shadow-none !border-b !border-b-black !rounded-none !ring-0 !outline-none focus:!border-b-2 !text-lg focus:!ring-0;
+}
+
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {

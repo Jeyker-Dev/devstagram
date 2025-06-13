@@ -27,11 +27,11 @@
     @else
         <div class="flex flex-col sm:flex-row gap-4 items-center">
             <flux:button icon="camera"
-                         href="{{ route('create-post', ['user' => $user->name]) }}">
+                         href="{{ route('create-post', $user) }}">
                 Crear
             </flux:button>
 
-            <a href="{{ route('my-profile', $user->name) }}">Hola: {{ $user->name }}</a>
+            <a href="{{ route('my-profile', $user) }}">Hola: {{ $user->username }}</a>
 
             <livewire:auth.logout/>
         </div>

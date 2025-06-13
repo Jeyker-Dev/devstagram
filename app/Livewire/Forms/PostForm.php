@@ -41,6 +41,6 @@ class PostForm extends Form
 
         $this->reset();
 
-        return redirect()->route('my-profile', Auth::user()->name);
+        return redirect()->route('my-profile', Auth::user());
     }
 }

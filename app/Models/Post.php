@@ -21,6 +21,11 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments(): hasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
     protected function postImageUrl(): Attribute
     {
         return Attribute::make(

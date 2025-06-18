@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 new #[Layout('components.layouts.auth')] class extends Component {
     public string $username = '';
     public ?int $postsCount = null;
-    public bool $editingUsername = false;
 
     public function mount(): void
     {
@@ -22,27 +21,16 @@ new #[Layout('components.layouts.auth')] class extends Component {
         ];
     }
 
-    public function startEditingUsername(): void
-    {
-        $this->editingUsername = true;
-    }
-
-    public function stopEditingUsername(): void
-    {
-        $this->editingUsername = false;
-    }
-
-    public function updateUsername(): void
+    public function updatedUsername(): void
     {
         $this->validate(['username' => 'required']);
         $user = Auth::user();
         $user->username = $this->username;
         $user->save();
-        $this->editingUsername = false;
     }
 }; ?>
 
-<div x-data="{ editing: false, username: @entangle('username') }" class="mt-6">
+<div x-data="{ editing: false }" class="mt-6">
     <x-general.title>
         Tu Cuenta
     </x-general.title>
@@ -54,10 +42,8 @@ new #[Layout('components.layouts.auth')] class extends Component {
            <p class="text-lg md:text-xl flex gap-4 items-center">
                <template x-if="editing">
                    <flux:input
-                          x-model="username"
+                          wire:model.change="username"
                           @click.outside="editing = false"
-                          @keydown.enter="$wire.set('username', username); $wire.updateUsername(); editing = false"
-                          @blur="$wire.set('username', username); $wire.updateUsername(); editing = false"
                           class="input-username"
                           autofocus
 
@@ -65,7 +51,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                </template>
                <template x-if="!editing">
                    <span class="flex gap-2 items-center">
-                       <span x-text="username"></span>
+                       <span x-text="$wire.username"></span>
                        <flux:icon.pencil @click="editing = true" class="cursor-pointer"/>
                    </span>
                </template>

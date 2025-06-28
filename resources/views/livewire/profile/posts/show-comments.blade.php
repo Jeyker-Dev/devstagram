@@ -2,11 +2,12 @@
 
 use Livewire\Volt\Component;
 use App\Models\Post;
+use Livewire\Attributes\On;
 
 new class extends Component {
     public Post $post;
 
-    public function mount(Post $post)
+    public function mount(Post $post): void
     {
         $this->post = $post;
     }
@@ -16,6 +17,12 @@ new class extends Component {
         return [
             'comments' => $this->post->comments()->with('user')->get(),
         ];
+    }
+
+    #[On('comment-added')]
+    public function refreshComments(): void
+    {
+        $this->with();
     }
 }; ?>
 

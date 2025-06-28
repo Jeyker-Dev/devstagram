@@ -31,6 +31,7 @@ new class extends Component {
         $this->reset('comment');
         $this->commentAdded = true;
         $this->dispatch('hide-message');
+        $this->dispatch('comment-added');
     }
 }; ?>
 

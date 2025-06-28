@@ -17,14 +17,14 @@
             </p>
         </div>
 
-        <div class="bg-white shadow-md rounded p-6 flex flex-col max-h-96">
+        <div class="bg-white shadow-md rounded p-6 flex flex-col max-h-96 overflow-y-auto">
             <h2 class="text-black md:text-lg mb-2">
                 Comentarios de la publicacion
             </h2>
 
             <livewire:profile.posts.add-comments :post="$post"/>
 
-            <livewire:profile.posts.show-comments/>
+            <livewire:profile.posts.show-comments :post="$post"/>
         </div>
     </div>
 </x-layouts.auth>

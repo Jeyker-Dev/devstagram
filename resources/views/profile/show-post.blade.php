@@ -7,7 +7,7 @@
         <div class="flex flex-col gap-4">
             <img src="{{ $post->post_image_url }}" alt="" class="h-md">
 
-            <livewire:profile.posts.likes/>
+            <livewire:profile.posts.likes :post="$post"/>
 
             <p class="flex flex-col gap-2">
                 {{ $user->name }}
